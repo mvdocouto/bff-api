@@ -1,12 +1,18 @@
 # Api de Cores
 
-API que fornece as cores hexadecimais para cada um dos tipos de Pokemons cadastrados em [PokeAPI](https://pokeapi.co/api/v2/type).
+API que fornece as cores hexadecimais para cada uma das categorias (Tipos) de Pokemons cadastrados em [PokeAPI](https://pokeapi.co/api/v2/type).
 
 - [Node](https://nodejs.org/en/)
-- [Express](https://expressjs.com/pt-br/) - Web Framework
-- [Mongoose](https://mongoosejs.com/) - Biblioteca para interação com MongoDB
-- [Joi](https://joi.dev/api/) - Biblioteca de validação de dados baseada em schemas
-- [Dotenv](https://github.com/motdotla/dotenv#readme) - Biblioteca para utilização de variáveis de ambiente
+- [Express](https://expressjs.com/pt-br/) - Web Framework.
+- [Mongoose](https://mongoosejs.com/) - Biblioteca para interação com MongoDB.
+- [Joi](https://joi.dev/api/) - Biblioteca de validação de dados baseada em schemas.
+- [Dotenv](https://github.com/motdotla/dotenv#readme) - Biblioteca para utilização de variáveis de ambiente.
+- [winston](https://github.com/winstonjs/winston#readme) - biblioteca de padrão para criação de log.
+- [eslint](https://eslint.org/) - Biblioteca de lint
+- [jest](https://jestjs.io/en/) - Framework para teste em Java Script.
+- [supertest](https://github.com/visionmedia/supertest#readme) - Biblioteca para abstração para testes HTTP.
+- [mongodb-memory-server](https://github.com/winstonjs/winston#readme) - biblioteca para mock MongoDB. Utilizada durante os testes.
+
 
 ## Instalação
 
@@ -81,9 +87,8 @@ Lista todas as categorias cadastradas e suas respectivas cores.
 
 ```
 Retorna o status:
-
-#### 200 - Categorias listadas com sucesso
-#### 500 - Erro ao tentar listar as categorias
+- 200 - Categorias listadas com sucesso
+- 500 - Erro ao tentar listar as categorias
 
 
 ### GET /colors?category={categoryValue}
@@ -100,10 +105,9 @@ Retorna os dados de uma categoria especifica. Exemplo ``http://localhost:8000/co
 ```
 
 Retorna os seguintes status:
-#### 200 - Categoria listada com sucesso
-
-#### 404 - Nenhuma categoria encontrada para este filtro
-#### 500 - Erro ao exibir os dados da categoria
+- 200 - Categoria listada com sucesso
+- 404 - Nenhuma categoria encontrada para este filtro
+- 500 - Erro ao exibir os dados da categoria
 
 
 ### POST /colors
@@ -127,9 +131,8 @@ Retorna o seguinte payload:
 ```
 Retorna os seguintes status:
 
-#### 201 - Categoria cadastrada com sucesso
-
-#### 500 - Erro ao cadastrar uma categoria
+- 201 - Categoria cadastrada com sucesso
+- 500 - Erro ao cadastrar uma categoria
 
 ### DELETE /colors/{categoriaID}
 
