@@ -1,0 +1,29 @@
+{
+  "name": "color-api",
+  "version": "1.0.0",
+  "description": "Pokemon type color API",
+  "main": "src/index.js",
+  "author": "Marcus Couto",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon",
+    "test": "NODE_ENV=test jest --runInBand",
+    "lint": "eslint '**/*.js'"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "joi": "^17.3.0",
+    "mongoose": "^5.11.8",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "eslint": "^7.16.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "nodemon": "^2.0.6"
+  }
+}
