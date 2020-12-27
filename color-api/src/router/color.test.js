@@ -17,14 +17,72 @@ const opts = {
 beforeAll(async () => {
   mongoServer = new MongoMemoryServer()
   const mongoUri = await mongoServer.getUri()
-  await mongoose.connect(mongoUri, opts, (err) => {
-    if (err) console.error(err)
-  })
+  await mongoose.connect(mongoUri, opts)
 })
 
 afterAll(async () => {
   await mongoose.disconnect()
   await mongoServer.stop()
+})
+
+afterEach(async () => {
+  const { collections } = mongoose.connection
+  const promises = Object.keys(collections).map((collection) => {
+    return mongoose.connection.collection(collection).deleteMany({})
+  })
+  await Promise.all(promises)
+})
+
+describe('List of categories', () => {
+  it('Must return all categories', async () => {
+    const mockPrimaryCategory = {
+      category: 'First',
+      color: '#FFFFFF'
+    }
+
+    const mockSecondCategory = {
+      category: 'Second',
+      color: '#FF0000'
+    }
+    const primaryCategory = new ColorsByCategory(mockPrimaryCategory)
+    await primaryCategory.save()
+
+    const secondCategory = new ColorsByCategory(mockSecondCategory)
+    await secondCategory.save()
+
+    const count = await ColorsByCategory.countDocuments()
+    expect(count).toEqual(2)
+
+    const response = await request(app).get('/colors')
+
+    expect(response.body[0].category).toEqual(mockPrimaryCategory.category)
+    expect(response.body[1].category).toEqual(mockSecondCategory.category)
+  })
+
+  it('Must return data from a filtered category', async () => {
+    const mockPrimaryCategory = {
+      category: 'First',
+      color: '#FFFFFF'
+    }
+
+    const mockSecondCategory = {
+      category: 'Second',
+      color: '#FF0000'
+    }
+    const primaryCategory = new ColorsByCategory(mockPrimaryCategory)
+    await primaryCategory.save()
+
+    const secondCategory = new ColorsByCategory(mockSecondCategory)
+    await secondCategory.save()
+
+    const count = await ColorsByCategory.countDocuments()
+    expect(count).toEqual(2)
+
+    const response = await request(app).get('/colors?category=Second')
+
+    expect(response.body[0].category).toEqual(mockSecondCategory.category)
+    expect(response.body[0].color).toEqual(mockSecondCategory.color)
+  })
 })
 
 describe('Insertion of a category', () => {
