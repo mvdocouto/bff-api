@@ -1,4 +1,4 @@
-const db = require('./db')
+const { disconnect } = require('./db')
 const logger = require('./logger')
 
 module.exports = (server) => {
@@ -7,9 +7,10 @@ module.exports = (server) => {
   })
 
   process.on('SIGINT', () => {
-    db.close(() => logger.info(
+    disconnect()
+    logger.info(
       'The connection was disconnected due to application termination'
-    ))
+    )
     process.exit(1)
   })
 }

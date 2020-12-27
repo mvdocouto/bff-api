@@ -48,7 +48,7 @@ router.post('/', async (req, res) => {
 
   try {
     const newColor = await color.save()
-    return res.status(200).json(newColor)
+    return res.status(201).json(newColor)
   } catch (error) {
     logger.error(`Error when inserting a category. ${error}`)
     return res.status(500).json({ message: error })
