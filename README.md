@@ -86,7 +86,7 @@ Lista todas as categorias cadastradas e suas respectivas cores.
 ]
 
 ```
-Retorna o status:
+#### Retorna os seguintes status:
 - 200 - Categorias listadas com sucesso
 - 500 - Erro ao tentar listar as categorias
 
@@ -104,7 +104,7 @@ Retorna os dados de uma categoria especifica. Exemplo ``http://localhost:8000/co
 ]
 ```
 
-Retorna os seguintes status:
+#### Retorna os seguintes status:
 - 200 - Categoria listada com sucesso
 - 404 - Nenhuma categoria encontrada para este filtro
 - 500 - Erro ao exibir os dados da categoria
@@ -129,8 +129,8 @@ Retorna o seguinte payload:
     "__v": 0
 }
 ```
-Retorna os seguintes status:
 
+#### Retorna os seguintes status:
 - 201 - Categoria cadastrada com sucesso
 - 500 - Erro ao cadastrar uma categoria
 
@@ -143,12 +143,9 @@ Retorna o seguinte payload:
     "message": "Category successfully deleted"
 }
 ```
-Retorna os seguintes status:
-
-#### 200 - Categoria excluida com sucesso
-
-#### 404 - Categoria não encontrada
-
-#### 500 - Erro ao excluir uma categoria
+#### Retorna os seguintes status:
+- 200 - Categoria excluida com sucesso
+- 404 - Categoria não encontrada
+- 500 - Erro ao excluir uma categoria
 
 
