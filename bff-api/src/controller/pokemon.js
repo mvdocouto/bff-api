@@ -30,9 +30,9 @@ const listPokemonType = async (name, url, colorList) => {
   }
 }
 
-const listAllPokemons = async () => {
+const listAllPokemons = async (offset, limit) => {
   try {
-    const { results } = await getPokemonList()
+    const { results } = await getPokemonList(offset, limit)
     const response = await listAllcolors()
     const colorList = await formatColorList(response.data)
 
