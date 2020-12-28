@@ -1,17 +1,17 @@
 # Api de Cores
 
-API que fornece as cores hexadecimais para cada uma das categorias (Tipos) de Pokemons cadastrados em [PokeAPI](https://pokeapi.co/api/v2/type).
+API que fornece as cores hexadecimais para cada uma das categorias (tipos) de Pokemons cadastrados em [PokeAPI](https://pokeapi.co/api/v2/type).
 
 - [Node](https://nodejs.org/en/)
 - [Express](https://expressjs.com/pt-br/) - Web Framework.
 - [Mongoose](https://mongoosejs.com/) - Biblioteca para interação com MongoDB.
-- [Joi](https://joi.dev/api/) - Biblioteca de validação de dados baseada em schemas.
-- [Dotenv](https://github.com/motdotla/dotenv#readme) - Biblioteca para utilização de variáveis de ambiente.
+- [joi](https://joi.dev/api/) - Biblioteca de validação de dados baseada em schemas.
+- [dotenv](https://github.com/motdotla/dotenv#readme) - Biblioteca para utilização de variáveis de ambiente.
 - [winston](https://github.com/winstonjs/winston#readme) - biblioteca de padrão para criação de log.
 - [eslint](https://eslint.org/) - Biblioteca de lint
 - [jest](https://jestjs.io/en/) - Framework para teste em Java Script.
 - [supertest](https://github.com/visionmedia/supertest#readme) - Biblioteca para abstração para testes HTTP.
-- [mongodb-memory-server](https://github.com/winstonjs/winston#readme) - biblioteca para mock MongoDB. Utilizada durante os testes.
+- [mongodb-memory-server](https://github.com/winstonjs/winston#readme) - Biblioteca para mock MongoDB, criando um banco em memoria. Utilizada durante os testes.
 
 
 ## Instalação
@@ -48,12 +48,12 @@ yarn test
 yarn lint
 ```
 
-- **start** executa o serviço em produção.
-- **dev** executa em modo desenvolvimento reiniciando o serviço a cada alteração do código.
-- **test** executa os testes da aplicação.
-- **lint** valida a estrutura dos códigos.
+- **start** - executa o serviço em produção.
+- **dev** - executa em modo desenvolvimento reiniciando o serviço a cada alteração do código.
+- **test** - executa as suites de teste da aplicação.
+- **lint** - verfica o lint dos .
 
-### Observação 
+### Observação:
 O serviço não executa se as variáveis de ambiente não estiverem configuradas corretamente. Como no exemplo:
 ``Error: Config validation error: "DATABASE_URL" is required`` 
 

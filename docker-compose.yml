@@ -1,17 +1,30 @@
 version: "3.7"
 services:
-  # colorapi:
-  #   container_name: colorApi
+  # bffapi:
+  #   container_name: bffApi
   #   restart: always
-  #   build: ./color-api/
+  #   build: ./bff-api/
   #   ports: 
-  #     - "8000:8000"
+  #     - "5000:5000"
   #   volumes:
-  #     - ./color-api:/app
+  #     - ./bff-api:/app
   #   env_file:
-  #     - ./color-api/.env
+  #     - ./bff-api/.env
   #   links:
   #     - mongo
+  #     - colorapi
+  colorapi:
+    container_name: colorApi
+    restart: always
+    build: ./color-api/
+    ports: 
+      - "8000:8000"
+    volumes:
+      - ./color-api:/app
+    env_file:
+      - ./color-api/.env
+    links:
+      - mongo
   mongo:
     container_name: mongo
     image: mongo
