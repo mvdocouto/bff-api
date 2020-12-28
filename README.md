@@ -5,8 +5,11 @@ Abstração da [Pokemon API](https://pokeapi.co/api/v2/) para listagem dos pokem
 [<img src="images/arquitetura.png" width="700"/>](images/arquitetura.png)
 
 ## Instalação
-Todo o projeto esta dockerizado. 
-Para roda-lo basta rodar o comando ``docker-componse -f docker-compose.yml up``.
+Todo o projeto esta dockerizado. Para roda-lo basta rodar o comando 
+```
+docker-componse -f docker-compose.yml up
+```
+
 O **docker-compose.yml** contem os sequintes serviços:
 - **mongo** - Banco da dados em MongoDB.
 - **mongo-seed** - Script para a carga inicial do banco de dados.
@@ -74,7 +77,6 @@ O serviço não executa se as variáveis de ambiente não estiverem configuradas
 
 ## Endpoints
 
-?limit=30&offset=5
 ### GET /
 Lista os Pokémons e seus Tipos (categorias) com suas cores correspondentes. Por padrão a API retorna os 20 primeiros registros. Para alterar a quantidades necessário passar os parametros ``limt`` e ``offset`` por query string.
 ```
