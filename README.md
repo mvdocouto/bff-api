@@ -1,7 +1,8 @@
 # Pokemon API
-Abstração da [Pokemon AP](https://pokeapi.co/api/v2/) para listagem dos pokemons informando se nome e as categorias (tipos) associados ao mesmo.
+Abstração da [Pokemon API](https://pokeapi.co/api/v2/) para listagem dos pokemons informando se nome e as categorias (tipos) associados ao mesmo.
 
 ## Arquitetura
+[<img src="images/arquitetura.png" width="700"/>](images/arquitetura.png)
 
 ## Instalação
 Todo o projeto esta dockerizado. 
@@ -73,8 +74,41 @@ O serviço não executa se as variáveis de ambiente não estiverem configuradas
 
 ## Endpoints
 
+?limit=30&offset=5
 ### GET /
-Lista os Pokémons e seus Tipos (categorias) com suas cores correspondentes.
+Lista os Pokémons e seus Tipos (categorias) com suas cores correspondentes. Por padrão a API retorna os 20 primeiros registros. Para alterar a quantidades necessário passar os parametros ``limt`` e ``offset`` por query string.
+```
+[
+    {
+        "name": "bulbasaur",
+        "types": [
+            {
+                "name": "grass",
+                "color": "#239B56"
+            },
+            {
+                "name": "poison",
+                "color": "#C39BD3"
+            }
+        ]
+    },
+    {
+        "name": "charmander",
+        "types": [
+            {
+                "name": "fire",
+                "color": "#E74C3C"
+            }
+        ]
+    }
+]
+```
+#### Retorna os seguintes status:
+- 200 - Categorias listadas com sucesso
+- 500 - Erro ao tentar listar as categorias
+
+### GET /?limit={limitValue}&offset={offsetValue}
+
 ```
 [
     {
@@ -90,22 +124,25 @@ Lista os Pokémons e seus Tipos (categorias) com suas cores correspondentes.
             }
         ]
     }
-    {
-        "name": "charmander",
-        "types": [
-            {
-                "name": "fire",
-                "color": "#E74C3C"
-            }
-        ]
-    }
 ]
-
 ```
+
 #### Retorna os seguintes status:
 - 200 - Categorias listadas com sucesso
 - 500 - Erro ao tentar listar as categorias
 
+
+### GET /health
+
+Retorna se aplicação esta running:
+
+```
+{
+    status: 'ok'
+}
+```
+#### Retorna os seguintes status:
+- 200 - Retorna que o serviço esta running
 
 # COLOR API
 
@@ -256,5 +293,18 @@ Retorna o seguinte payload:
 - 200 - Categoria excluida com sucesso
 - 404 - Categoria não encontrada
 - 500 - Erro ao excluir uma categoria
+
+
+### GET /health
+
+Retorna se aplicação esta running:
+
+```
+{
+    status: 'ok'
+}
+```
+#### Retorna os seguintes status:
+- 200 - Retorna que o serviço esta running
 
 
