@@ -21,19 +21,24 @@ const formatPokemonType = (typeList, colorList) => {
   })
 }
 
+const listPokemonType = async (name, url, colorList) => {
+  const pokemonId = getIdByUrl(url)
+  const result = await getPokemonType(pokemonId)
+  return {
+    name,
+    types: formatPokemonType(result, colorList)
+  }
+}
+
 const listAllPokemons = async () => {
   try {
     const { results } = await getPokemonList()
     const response = await listAllcolors()
     const colorList = await formatColorList(response.data)
+
     const pokemonList = await Promise.all(
       results.map(async ({ name, url }) => {
-        const pokemonId = getIdByUrl(url)
-        const result = await getPokemonType(pokemonId)
-        return {
-          name,
-          types: formatPokemonType(result, colorList)
-        }
+        return listPokemonType(name, url, colorList)
       })
     )
     return {
@@ -51,6 +56,7 @@ const listAllPokemons = async () => {
 
 module.exports = {
   formatPokemonType,
+  listPokemonType,
   listAllPokemons,
   formatColorList
 }
