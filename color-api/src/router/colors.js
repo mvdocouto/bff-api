@@ -3,7 +3,11 @@ const validatePayload = require('../utils/validate')
 const router = express.Router()
 
 const logger = require('../config/logger')
-const ColorsByCategory = require('../model/colors')
+// const ColorsByCategory = require('../model/colors')
+const {
+  listColors, findColorByCategory, createNewColor, deleteColor
+} = require('../controller/color')
+
 const {
   BODY_NOT_FOUND,
   CATEGORY_IS_DELETED,
@@ -14,10 +18,7 @@ router.get('/', async (req, res) => {
   try {
     if (Object.keys(req.query).length !== 0) {
       const { category } = req.query
-      const categoryColor = await ColorsByCategory.find({
-        category: category
-      }).select('category color')
-
+      const categoryColor = await findColorByCategory(category)
       if (categoryColor.length === 0) {
         return res.status(404).json({ message: CATEGORY_NOT_FOUND })
       }
@@ -25,10 +26,7 @@ router.get('/', async (req, res) => {
       return res.status(200).json(categoryColor)
     }
 
-    const categoryColor = await ColorsByCategory.find().select(
-      'category color'
-    )
-
+    const categoryColor = await listColors()
     return res.status(200).json(categoryColor)
   } catch (error) {
     logger.error('Get list of categories')
@@ -41,13 +39,9 @@ router.post('/', async (req, res) => {
     return res.status(400).json({ message: BODY_NOT_FOUND })
   }
 
-  const color = new ColorsByCategory({
-    category: req.body.category,
-    color: req.body.color
-  })
-
+  const { category, color } = req.body
   try {
-    const newColor = await color.save()
+    const newColor = await createNewColor(category, color)
     return res.status(201).json(newColor)
   } catch (error) {
     logger.error(`Error when inserting a category. ${error}`)
@@ -57,7 +51,7 @@ router.post('/', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
   try {
-    const result = await ColorsByCategory.deleteOne({ _id: req.params.id })
+    const result = await deleteColor(req.params.id)
 
     if (result.deletedCount === 1) {
       return res.status(200).json({ message: CATEGORY_IS_DELETED })
