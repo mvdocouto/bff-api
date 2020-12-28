@@ -3,7 +3,6 @@ const validatePayload = require('../utils/validate')
 const router = express.Router()
 
 const logger = require('../config/logger')
-// const ColorsByCategory = require('../model/colors')
 const {
   listColors, findColorByCategory, createNewColor, deleteColor
 } = require('../controller/color')
