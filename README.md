@@ -1,13 +1,14 @@
 # Pokemon API
-Abstração do Pokemon API para listagem dos pokemons informando se nome e as categorias (tipos) associados ao mesmo.
+Abstração da [Pokemon AP](https://pokeapi.co/api/v2/) para listagem dos pokemons informando se nome e as categorias (tipos) associados ao mesmo.
 
 ## Arquitetura
 
 ## Instalação
-Todo o projeto esta dockerizado. Para roda-lo basta rodar o comando ``docker-componse -f docker-compose.yml up``.
+Todo o projeto esta dockerizado. 
+Para roda-lo basta rodar o comando ``docker-componse -f docker-compose.yml up``.
 O **docker-compose.yml** contem os sequintes serviços:
-- **mongo** - banco da dados em MongoDB.
-- **mongo-seed** - script para a carga inicial do banco de dados.
+- **mongo** - Banco da dados em MongoDB.
+- **mongo-seed** - Script para a carga inicial do banco de dados.
 - **colorapi** - API que retorna as categorias (tipos) dos pokemons e suas respecitivas cores.
 - **bffapi** - API que abstrai a listagem de pokemons retornando seus nomes e tipos.
 
@@ -106,9 +107,9 @@ Lista os Pokémons e seus Tipos (categorias) com suas cores correspondentes.
 - 500 - Erro ao tentar listar as categorias
 
 
-# Api de Cores
+# COLOR API
 
-API que fornece as cores hexadecimais para cada uma das categorias (tipos) de Pokemons cadastrados em [PokeAPI](https://pokeapi.co/api/v2/type).
+API que fornece as cores hexadecimais para cada uma das categorias (tipos) de Pokémons cadastrados em [PokeAPI](https://pokeapi.co/api/v2/type).
 
 - [Node](https://nodejs.org/en/)
 - [Express](https://expressjs.com/pt-br/) - Web Framework.
