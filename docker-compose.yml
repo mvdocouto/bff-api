@@ -1,18 +1,30 @@
 version: "3.7"
 services:
-  # bffapi:
-  #   container_name: bffApi
-  #   restart: always
-  #   build: ./bff-api/
-  #   ports: 
-  #     - "5000:5000"
-  #   volumes:
-  #     - ./bff-api:/app
-  #   env_file:
-  #     - ./bff-api/.env
-  #   links:
-  #     - mongo
-  #     - colorapi
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports: 
+      - "27017:27017"
+
+  mongo-seed:
+    build: ./mongo-seed
+    links:
+      - mongo
+
+  bffapi:
+    container_name: bffApi
+    restart: always
+    build: ./bff-api/
+    ports: 
+      - "5000:5000"
+    volumes:
+      - ./bff-api:/app
+    env_file:
+      - ./bff-api/.env
+    links:
+      - mongo
+      - colorapi
+      
   colorapi:
     container_name: colorApi
     restart: always
@@ -25,8 +37,3 @@ services:
       - ./color-api/.env
     links:
       - mongo
-  mongo:
-    container_name: mongo
-    image: mongo
-    ports: 
-      - "27017:27017"
