@@ -8,7 +8,11 @@ const instance = axios.create({
 
 const listAllcolors = async () => {
   try {
-    const result = await instance.get('/colors')
+    const result = await instance.get('/colors', {
+      validateStatus: (status) => {
+        return status < 500
+      }
+    })
     return result
   } catch (error) {
     logger.error('Error when listing colors')
@@ -18,7 +22,11 @@ const listAllcolors = async () => {
 
 const getColorByCategory = async (category) => {
   try {
-    const result = await instance.get(`/colors?category=${category}`)
+    const result = await instance.get(`/colors?category=${category}`, {
+      validateStatus: (status) => {
+        return status < 500
+      }
+    })
     return result
   } catch (error) {
     logger.error('Error searching for a color filtering by category')

@@ -3,7 +3,7 @@ const { COLOR_API_URL } = process.env
 
 const { listAllcolors, getColorByCategory } = require('./colorApi')
 
-describe('GetIdByUrl Funtion', () => {
+describe('Color API', () => {
   beforeEach(() => {
     nock.cleanAll()
     nock.enableNetConnect()
@@ -29,8 +29,8 @@ describe('GetIdByUrl Funtion', () => {
     ]
     nock(COLOR_API_URL).get('/colors').reply(200, colorApiResponse)
 
-    const result = listAllcolors()
-    expect(result).toEqual(colorApiResponse)
+    const result = await listAllcolors()
+    expect(result.data).toEqual(colorApiResponse)
   })
 
   it('must return the data of the searched category', async () => {
@@ -46,7 +46,31 @@ describe('GetIdByUrl Funtion', () => {
       .query({ category: mockCategory })
       .reply(200, colorApiResponse)
 
-    const result = getColorByCategory(mockCategory)
-    expect(result).toEqual(colorApiResponse)
+    const result = await getColorByCategory(mockCategory)
+    expect(result.data).toEqual(colorApiResponse)
+  })
+
+  it('should return 404 if the category is not found', async () => {
+    const mockCategory = 'fighting'
+    const colorApiResponse = { message: 'Category not found' }
+
+    nock(COLOR_API_URL)
+      .get('/colors')
+      .query({ category: mockCategory })
+      .reply(404, colorApiResponse)
+
+    const result = await getColorByCategory(mockCategory)
+    expect(result.data).toEqual(colorApiResponse)
+  })
+
+  it('should return 500 of the searched category', async () => {
+    const mockCategory = 'fighting'
+
+    nock(COLOR_API_URL)
+      .get('/colors')
+      .query({ category: mockCategory })
+      .reply(500)
+
+    await expect(getColorByCategory(mockCategory)).rejects.toThrow()
   })
 })
