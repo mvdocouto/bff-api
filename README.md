@@ -1,6 +1,18 @@
-# Api de Cores
+# Pokemon API
+Abstração do Pokemon API para listagem dos pokemons informando se nome e as categorias (tipos) associados ao mesmo.
 
-API que fornece as cores hexadecimais para cada uma das categorias (tipos) de Pokemons cadastrados em [PokeAPI](https://pokeapi.co/api/v2/type).
+## Arquitetura
+
+## Instalação
+Todo o projeto esta dockerizado. Para roda-lo basta rodar o comando ``docker-componse -f docker-compose.yml up``.
+O **docker-compose.yml** contem os sequintes serviços:
+- **mongo** - banco da dados em MongoDB.
+- **mongo-seed** - script para a carga inicial do banco de dados.
+- **colorapi** - API que retorna as categorias (tipos) dos pokemons e suas respecitivas cores.
+- **bffapi** - API que abstrai a listagem de pokemons retornando seus nomes e tipos.
+
+# BFF API
+API que retornas os Pokemons cadastrados em [PokeAPI](https://pokeapi.co/api/v2/type) associando suas categorias (tipos) a cor correspondente na Color API.
 
 - [Node](https://nodejs.org/en/)
 - [Express](https://expressjs.com/pt-br/) - Web Framework.
@@ -11,7 +23,103 @@ API que fornece as cores hexadecimais para cada uma das categorias (tipos) de Po
 - [eslint](https://eslint.org/) - Biblioteca de lint
 - [jest](https://jestjs.io/en/) - Framework para teste em Java Script.
 - [supertest](https://github.com/visionmedia/supertest#readme) - Biblioteca para abstração para testes HTTP.
-- [mongodb-memory-server](https://github.com/winstonjs/winston#readme) - Biblioteca para mock MongoDB, criando um banco em memoria. Utilizada durante os testes.
+- [nock](https://github.com/nock/nock) - Biblioteca para mock de requisições HTTP.
+
+
+## Instalação
+
+Para instalar as dependencias basta acessar o terminal e rodar
+
+```
+yarn install
+```
+Na raiz do projeto existe o arquivo ``.env`` onde estão as configurações da url da PokeAPI, da url da ColorAPI e a porta onde a aplicação ira rodar. Coso não seja fornecdo uma porta o valor default é a **5000**.
+
+```
+PORT=5000
+POKEAPI_URL=https://pokeapi.co/api/v2/
+COLOR_API_URL=http://colorapi:8000
+```
+
+## Executando a API
+
+O serviço possui os sequintes comandos para a execução:
+
+```
+yarn dev
+```
+
+```
+yarn start
+```
+
+```
+yarn test
+```
+
+```
+yarn lint
+```
+
+- **start** - executa o serviço em produção.
+- **dev** - executa em modo desenvolvimento reiniciando o serviço a cada alteração do código.
+- **test** - executa as suites de teste da aplicação.
+- **lint** - verfica o lint dos arquivos.
+
+### Observação:
+O serviço não executa se as variáveis de ambiente não estiverem configuradas corretamente. Como no exemplo:
+``Error: Config validation error: "POKEAPI_URL" is required`` 
+
+## Endpoints
+
+### GET /
+Lista os Pokémons e seus Tipos (categorias) com suas cores correspondentes.
+```
+[
+    {
+        "name": "bulbasaur",
+        "types": [
+            {
+                "name": "grass",
+                "color": "#239B56"
+            },
+            {
+                "name": "poison",
+                "color": "#C39BD3"
+            }
+        ]
+    }
+    {
+        "name": "charmander",
+        "types": [
+            {
+                "name": "fire",
+                "color": "#E74C3C"
+            }
+        ]
+    }
+]
+
+```
+#### Retorna os seguintes status:
+- 200 - Categorias listadas com sucesso
+- 500 - Erro ao tentar listar as categorias
+
+
+# Api de Cores
+
+API que fornece as cores hexadecimais para cada uma das categorias (tipos) de Pokemons cadastrados em [PokeAPI](https://pokeapi.co/api/v2/type).
+
+- [Node](https://nodejs.org/en/)
+- [Express](https://expressjs.com/pt-br/) - Web Framework.
+- [Mongoose](https://mongoosejs.com/) - Biblioteca para interação com MongoDB.
+- [joi](https://joi.dev/api/) - Biblioteca de validação de dados baseada em schemas.
+- [dotenv](https://github.com/motdotla/dotenv#readme) - Biblioteca para utilização de variáveis de ambiente.
+- [winston](https://github.com/winstonjs/winston#readme) - biblioteca de padrão para criação de log.
+- [eslint](https://eslint.org/) - Biblioteca de lint.
+- [jest](https://jestjs.io/en/) - Framework para teste em Java Script.
+- [supertest](https://github.com/visionmedia/supertest#readme) - Biblioteca para abstração para testes HTTP.
+- [mongodb-memory-server](https://github.com/nodkz/mongodb-memory-server) - Biblioteca para mock MongoDB, criando um banco em memoria. Utilizada durante os testes.
 
 
 ## Instalação
