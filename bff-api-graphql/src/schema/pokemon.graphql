@@ -1,0 +1,18 @@
+input Page {
+  offset: Int
+  limit: Int
+}
+
+type PokemonType {
+    name: String!
+    color: String!
+}
+
+type PokemonList {
+    name: String!
+    types: [PokemonType]!
+}
+
+type Query {
+  listPokemons(page: Page): [PokemonList]!
+}
