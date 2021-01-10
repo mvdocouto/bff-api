@@ -14,5 +14,5 @@ type PokemonList {
 }
 
 type Query {
-  listPokemons(page: Page): [PokemonList]!
+  listPokemons(page: Page): [PokemonList]
 }

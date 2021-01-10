@@ -39,10 +39,7 @@ module.exports = (server) => {
     schema,
     playground: GRAPHI,
     introspection: GRAPHI,
-    // dataSources,
-    context: ({ req }) => ({
-      logger: req.logger,
-    }),
+    dataSources
   });
   apolloServer.applyMiddleware({
     app: server,
