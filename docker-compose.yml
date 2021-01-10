@@ -11,19 +11,19 @@ services:
     links:
       - mongo
 
-  bffapi:
-    container_name: bffApi
-    restart: always
-    build: ./bff-api/
-    ports: 
-      - "5000:5000"
-    volumes:
-      - ./bff-api:/app
-    env_file:
-      - ./bff-api/.env
-    links:
-      - mongo
-      - colorapi
+  # bffapi:
+  #   container_name: bffApi
+  #   restart: always
+  #   build: ./bff-api/
+  #   ports: 
+  #     - "5000:5000"
+  #   volumes:
+  #     - ./bff-api:/app
+  #   env_file:
+  #     - ./bff-api/.env
+  #   links:
+  #     - mongo
+  #     - colorapi
       
   colorapi:
     container_name: colorApi

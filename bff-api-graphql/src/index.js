@@ -1,6 +1,5 @@
-const { server, boot, graphql } = require("./config");
+const { server, boot, graphql } = require('./config')
 
-graphql(server);
+graphql(server)
 
-boot(server);
-
+boot(server)

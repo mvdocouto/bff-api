@@ -1,5 +1,5 @@
-const listPokemons = require("./listPokemons");
+const listPokemons = require('./listPokemons')
 
 module.exports = {
-  listPokemons,
-};
+  listPokemons
+}

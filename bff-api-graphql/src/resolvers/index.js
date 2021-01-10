@@ -1,10 +1,9 @@
-const { reduce, mergeDeepWith, concat } = require("ramda");
+const { reduce, mergeDeepWith, concat } = require('ramda')
 
-const mergeObject = (accumulator, item) =>
-  mergeDeepWith(concat, accumulator, item);
+const mergeObject = (accumulator, item) => mergeDeepWith(concat, accumulator, item)
 
-const pokemonResolver = require("./pokemon");
+const pokemonResolver = require('./pokemon')
 
-const resolvers = reduce(mergeObject, {}, [pokemonResolver]);
+const resolvers = reduce(mergeObject, {}, [pokemonResolver])
 
-module.exports = resolvers;
+module.exports = resolvers

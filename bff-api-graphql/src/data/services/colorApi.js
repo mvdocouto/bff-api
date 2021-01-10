@@ -1,11 +1,12 @@
-const { RESTDataSource } = require("apollo-datasource-rest");
+const { RESTDataSource } = require('apollo-datasource-rest')
+const logger = require('../../config/logger')
 
-const { COLOR_API_URL } = process.env;
+const { COLOR_API_URL } = process.env
 
 class ColorAPI extends RESTDataSource {
   constructor() {
-    super();
-    this.baseURL = COLOR_API_URL;
+    super()
+    this.baseURL = COLOR_API_URL
   }
 
   didEncounterError(error, request) {
@@ -14,25 +15,25 @@ class ColorAPI extends RESTDataSource {
       request: {
         method: request.method,
         url: request.url,
-        headers: request.headers,
-      },
-    };
+        headers: request.headers
+      }
+    }
 
-    console.error("COLOR_API_SERVICE_HTTP_ERROR", payloadError);
-    throw error;
+    logger.error('COLOR_API_SERVICE_HTTP_ERROR', payloadError)
+    throw error
   }
 
   async listAllcolors() {
-    console.info("REQUEST_COLOR_API_SERVICE");
-    const result = await this.get("/colors");
-    return result;
+    logger.info('REQUEST_COLOR_API_SERVICE')
+    const result = await this.get('/colors')
+    return result
   }
 
   async getColorByCategory(category) {
-    console.info("REQUEST_COLOR_API_SERVICE", { category });
-    const result = await this.get(`/colors?category=${category}`);
-    return result;
+    logger.info('REQUEST_COLOR_API_SERVICE', { category })
+    const result = await this.get(`/colors?category=${category}`)
+    return result
   }
 }
 
-module.exports = ColorAPI;
+module.exports = ColorAPI

@@ -1,13 +1,13 @@
-const R = require("ramda");
+const R = require('ramda')
 
-const name = R.prop("name");
-const types = R.prop("types");
+const name = R.prop('name')
+const types = R.prop('types')
 
 const pokemonList = {
   name,
-  types,
-};
+  types
+}
 
 module.exports = {
   pokemonList
-};
+}

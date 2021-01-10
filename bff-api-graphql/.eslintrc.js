@@ -19,6 +19,8 @@ module.exports = {
     semi: ['error', 'never'],
     'comma-dangle': ['error', 'never'],
     'no-console': 'warn',
-    'no-shadow': [0, { hoist: 'never' }]
+    'no-shadow': [0, { hoist: 'never' }],
+    'class-methods-use-this': 'off'
+
   }
 }
