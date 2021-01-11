@@ -27,6 +27,7 @@
     "winston": "^3.3.3"
   },
   "devDependencies": {
+    "apollo-server-testing": "^2.19.1",
     "eslint": "^7.17.0",
     "eslint-plugin-es6": "^1.0.0",
     "eslint-plugin-import": "^2.22.1",
