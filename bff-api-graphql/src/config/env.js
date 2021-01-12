@@ -4,7 +4,9 @@ module.exports = () => {
   const variableSchema = {
     PORT: joi.number().default(5000),
     POKEAPI_URL: joi.string().required(),
-    COLOR_API_URL: joi.string().required()
+    COLOR_API_URL: joi.string().required(),
+    REDIS_HOST: joi.string().required(),
+    REDIS_PORT: joi.number().required()
   }
   const schema = joi.object(variableSchema).unknown().required()
 

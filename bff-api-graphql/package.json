@@ -16,6 +16,7 @@
     "apollo-server-cache-redis": "^1.2.2",
     "apollo-server-express": "^2.19.1",
     "apollo-server-plugin-response-cache": "^0.5.7",
+    "async-redis": "^1.1.7",
     "dotenv": "^8.2.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "express": "^4.17.1",
@@ -24,6 +25,7 @@
     "helmet": "^4.3.1",
     "joi": "^17.3.0",
     "ramda": "^0.27.1",
+    "redis": "^3.0.2",
     "winston": "^3.3.3"
   },
   "devDependencies": {

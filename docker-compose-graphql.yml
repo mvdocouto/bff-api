@@ -7,10 +7,19 @@ services:
       - "27017:27017"
 
   mongo-seed:
+    container_name: mongo-seed
     build: ./mongo-seed
     links:
       - mongo
 
+  redis:
+    container_name: cache
+    image: redis:6.2-rc1-alpine
+    volumes:
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+    ports: 
+      - "6379:6379"
+         
   bff-api-graphql:
     container_name: bff-api-graphql
     restart: always
@@ -24,9 +33,10 @@ services:
     links:
       - mongo
       - colorapi
-      
+      - redis
+
   colorapi:
-    container_name: colorApi
+    container_name: color-api
     restart: always
     build: ./color-api/
     ports: 
